@@ -31,7 +31,24 @@ export default function AudioRecorder({ onTranscriptionComplete, disabled, conte
 
   const startRecording = async () => {
     try {
+      // Check if the API is available
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        throw new Error('Audio recording is not supported in your browser. Please use a modern browser with HTTPS.');
+      }
+
+      // Check if we're on HTTPS (required for mobile)
+      if (window.location.protocol !== 'https:' && window.location.hostname !== 'localhost') {
+        alert('🔒 Microphone access requires HTTPS. Please access this site via HTTPS or use localhost for testing.');
+        return;
+      }
+
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      
+      // Check if MediaRecorder is supported
+      if (!window.MediaRecorder) {
+        throw new Error('Audio recording is not supported in your browser.');
+      }
+
       const mediaRecorder = new MediaRecorder(stream);
       mediaRecorderRef.current = mediaRecorder;
       audioChunksRef.current = [];
@@ -52,7 +69,33 @@ export default function AudioRecorder({ onTranscriptionComplete, disabled, conte
       setIsRecording(true);
     } catch (error) {
       console.error('Error accessing microphone:', error);
-      alert('Could not access microphone. Please check permissions.');
+      
+      let errorMessage = '🎤 Could not access microphone.\n\n';
+      
+      if (error instanceof Error) {
+        if (error.name === 'NotAllowedError' || error.name === 'PermissionDeniedError') {
+          errorMessage += '❌ Permission denied. Please:\n\n';
+          errorMessage += '1. Check your browser settings\n';
+          errorMessage += '2. Allow microphone access for this site\n';
+          errorMessage += '3. On iOS: Go to Settings > Safari > Camera/Microphone\n';
+          errorMessage += '4. On Android: Go to Site Settings and enable microphone';
+        } else if (error.name === 'NotFoundError' || error.name === 'DevicesNotFoundError') {
+          errorMessage += '📱 No microphone found. Please check that your device has a microphone.';
+        } else if (error.name === 'NotReadableError' || error.name === 'TrackStartError') {
+          errorMessage += '⚠️ Microphone is already in use by another application.';
+        } else if (error.name === 'OverconstrainedError') {
+          errorMessage += '⚙️ Microphone settings are not compatible.';
+        } else if (error.name === 'SecurityError') {
+          errorMessage += '🔒 HTTPS is required for microphone access on mobile devices.\n\n';
+          errorMessage += 'Please access this site via HTTPS.';
+        } else {
+          errorMessage += error.message;
+        }
+      } else {
+        errorMessage += 'Please check your browser permissions and try again.';
+      }
+      
+      alert(errorMessage);
     }
   };
 
