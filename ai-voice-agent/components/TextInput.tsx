@@ -40,28 +40,11 @@ export default function TextInput({ onSendMessage, disabled }: TextInputProps) {
       <motion.button
         type="submit"
         disabled={!message.trim() || disabled}
-        className={`relative p-[1.75rem] rounded-3xl transition-all duration-300 ${
-          message.trim() && !disabled
-            ? 'bg-gradient-to-br from-cyan-500 via-blue-500 to-purple-500 hover:from-cyan-600 hover:via-blue-600 hover:to-purple-600 shadow-2xl shadow-cyan-500/60 ring-4 ring-cyan-400/70'
-            : 'bg-gradient-to-br from-purple-500/50 via-pink-500/50 to-rose-500/50 shadow-lg shadow-purple-500/30 ring-2 ring-purple-400/30'
-        } disabled:opacity-50 disabled:cursor-not-allowed`}
-        whileHover={{ scale: message.trim() && !disabled ? 1.05 : 1 }}
+        className="p-4 rounded-2xl bg-gradient-to-br from-cyan-500 via-blue-500 to-purple-500 hover:from-cyan-600 hover:via-blue-600 hover:to-purple-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-xl shadow-cyan-500/30 ring-2 ring-cyan-400/50"
+        whileHover={{ scale: 1.1, rotate: 5 }}
         whileTap={{ scale: 0.95 }}
-        animate={message.trim() && !disabled ? {
-          boxShadow: [
-            '0 0 0 0 rgba(34, 211, 238, 0.7)',
-            '0 0 0 20px rgba(34, 211, 238, 0)',
-          ]
-        } : {}}
-        transition={message.trim() && !disabled ? {
-          boxShadow: {
-            duration: 1.5,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }
-        } : {}}
       >
-        <Send className="w-[2.25rem] h-[2.25rem] text-white" />
+        <Send className="w-6 h-6 text-white" />
       </motion.button>
     </form>
   );

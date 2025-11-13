@@ -17,7 +17,7 @@ export default function MessageList({ messages }: MessageListProps) {
   }, [messages]);
 
   return (
-    <div className="h-full overflow-y-auto px-6 py-8 space-y-6 scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent">
+    <div className="flex-1 overflow-y-auto px-6 py-8 space-y-6 scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent">
       <AnimatePresence initial={false}>
         {messages.map((message, index) => (
           <motion.div

@@ -162,18 +162,19 @@ export default function AudioRecorder({ onTranscriptionComplete, disabled, conte
       <motion.button
         onClick={toggleRecording}
         disabled={disabled || isProcessing}
-        className={`relative p-[1.75rem] rounded-3xl transition-all duration-300 ${
+        className={`relative p-7 rounded-3xl transition-all duration-300 ${
           isRecording
-            ? 'bg-gradient-to-br from-red-500 via-rose-500 to-pink-600 hover:from-red-600 hover:via-rose-600 hover:to-pink-700 shadow-2xl shadow-red-500/60 ring-4 ring-red-400/70'
-            : 'bg-gradient-to-br from-purple-500/50 via-pink-500/50 to-rose-500/50 hover:from-purple-600/60 hover:via-pink-600/60 hover:to-rose-600/60 shadow-lg shadow-purple-500/30 ring-2 ring-purple-400/30'
+            ? 'bg-gradient-to-br from-red-500 via-rose-500 to-pink-600 hover:from-red-600 hover:via-rose-600 hover:to-pink-700 shadow-2xl shadow-red-500/60 ring-2 ring-red-400/50'
+            : 'bg-gradient-to-br from-purple-500 via-pink-500 to-rose-500 hover:from-purple-600 hover:via-pink-600 hover:to-rose-600 shadow-2xl shadow-purple-500/60 ring-2 ring-purple-400/50'
         } ${(disabled || isProcessing) ? 'opacity-50 cursor-not-allowed' : ''}`}
-        whileHover={{ scale: isRecording ? 1 : 1.05 }}
-        whileTap={{ scale: 0.95 }}
+        whileHover={{ scale: 1.1, rotate: isRecording ? 0 : 10 }}
+        whileTap={{ scale: 0.9 }}
         animate={isRecording ? { 
           boxShadow: [
             '0 0 0 0 rgba(239, 68, 68, 0.8)',
-            '0 0 0 20px rgba(239, 68, 68, 0)',
-          ]
+            '0 0 0 30px rgba(239, 68, 68, 0)',
+          ],
+          rotate: [0, 5, -5, 0]
         } : {}}
         transition={isRecording ? { 
           duration: 1.5,
@@ -185,7 +186,7 @@ export default function AudioRecorder({ onTranscriptionComplete, disabled, conte
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-            className="w-[2.25rem] h-[2.25rem]"
+            className="w-9 h-9"
           >
             <div className="w-full h-full border-4 border-white border-t-transparent rounded-full" />
           </motion.div>
@@ -194,10 +195,10 @@ export default function AudioRecorder({ onTranscriptionComplete, disabled, conte
             animate={{ scale: [1, 1.2, 1] }}
             transition={{ duration: 0.8, repeat: Infinity }}
           >
-            <MicOff className="w-[2.25rem] h-[2.25rem] text-white" />
+            <MicOff className="w-9 h-9 text-white" />
           </motion.div>
         ) : (
-          <Mic className="w-[2.25rem] h-[2.25rem] text-white" />
+          <Mic className="w-9 h-9 text-white" />
         )}
       </motion.button>
     </div>

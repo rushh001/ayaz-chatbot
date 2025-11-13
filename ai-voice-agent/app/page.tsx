@@ -258,7 +258,7 @@ export default function Home() {
         </motion.header>
 
         {/* Messages */}
-        <div className="flex-1 overflow-hidden min-h-0">
+        <div className="flex-1 overflow-hidden">
           {messages.length === 0 ? (
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
