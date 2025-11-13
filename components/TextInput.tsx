@@ -21,7 +21,7 @@ export default function TextInput({ onSendMessage, disabled }: TextInputProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex items-center space-x-3">
+    <form onSubmit={handleSubmit} className="flex items-center space-x-2">
       <div className="flex-1 relative">
         <input
           type="text"
@@ -29,28 +29,28 @@ export default function TextInput({ onSendMessage, disabled }: TextInputProps) {
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Type your message here..."
           disabled={disabled}
-          className="w-full px-6 py-4 rounded-3xl bg-white/15 backdrop-blur-xl border border-white/30 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg text-base font-medium"
+          className="w-full px-4 py-3 rounded-2xl bg-white/15 backdrop-blur-xl border border-white/30 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg text-sm font-medium"
         />
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: message.trim() ? 1 : 0 }}
-          className="absolute right-4 top-1/2 -translate-y-1/2 w-2 h-2 bg-cyan-400 rounded-full"
+          className="absolute right-3 top-1/2 -translate-y-1/2 w-2 h-2 bg-cyan-400 rounded-full"
         />
       </div>
       <motion.button
         type="submit"
         disabled={!message.trim() || disabled}
-        className={`relative p-[1.75rem] rounded-3xl transition-all duration-300 ${
+        className={`relative p-3 rounded-2xl transition-all duration-300 ${
           message.trim() && !disabled
-            ? 'bg-gradient-to-br from-cyan-500 via-blue-500 to-purple-500 hover:from-cyan-600 hover:via-blue-600 hover:to-purple-600 shadow-2xl shadow-cyan-500/60 ring-4 ring-cyan-400/70'
-            : 'bg-gradient-to-br from-purple-500/50 via-pink-500/50 to-rose-500/50 shadow-lg shadow-purple-500/30 ring-2 ring-purple-400/30'
+            ? 'bg-gradient-to-br from-cyan-500 via-blue-500 to-purple-500 hover:from-cyan-600 hover:via-blue-600 hover:to-purple-600 shadow-xl shadow-cyan-500/60 ring-3 ring-cyan-400/70'
+            : 'bg-gradient-to-br from-purple-500/50 via-pink-500/50 to-rose-500/50 shadow-md shadow-purple-500/30 ring-2 ring-purple-400/30'
         } disabled:opacity-50 disabled:cursor-not-allowed`}
         whileHover={{ scale: message.trim() && !disabled ? 1.05 : 1 }}
         whileTap={{ scale: 0.95 }}
         animate={message.trim() && !disabled ? {
           boxShadow: [
             '0 0 0 0 rgba(34, 211, 238, 0.7)',
-            '0 0 0 20px rgba(34, 211, 238, 0)',
+            '0 0 0 15px rgba(34, 211, 238, 0)',
           ]
         } : {}}
         transition={message.trim() && !disabled ? {
@@ -61,7 +61,7 @@ export default function TextInput({ onSendMessage, disabled }: TextInputProps) {
           }
         } : {}}
       >
-        <Send className="w-[2.25rem] h-[2.25rem] text-white" />
+        <Send className="w-5 h-5 text-white" />
       </motion.button>
     </form>
   );
