@@ -204,13 +204,13 @@ export default function Home() {
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 flex flex-col h-screen max-w-4xl mx-auto">
+      <div className="relative z-10 flex flex-col h-screen w-full max-w-4xl mx-auto">
         {/* Header */}
         <motion.header
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
-          className="p-4 backdrop-blur-2xl bg-gradient-to-r from-white/10 via-white/5 to-white/10 border-b border-white/20 shadow-2xl"
+          className="p-3 sm:p-4 backdrop-blur-2xl bg-gradient-to-r from-white/10 via-white/5 to-white/10 border-b border-white/20 shadow-2xl"
         >
           <div className="flex items-center justify-between">
             <motion.div
@@ -218,15 +218,15 @@ export default function Home() {
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
             >
-              <h1 className="text-2xl font-extrabold bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent drop-shadow-lg">
+              <h1 className="text-xl sm:text-2xl font-extrabold bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent drop-shadow-lg">
                 ✨ AI Chatbot
               </h1>
-              <p className="text-white/80 text-xs mt-0.5 font-medium">
+              <p className="text-white/80 text-[10px] sm:text-xs mt-0.5 font-medium">
                 🎤 Speak or 💬 Type to start your conversation
               </p>
             </motion.div>
             <motion.div 
-              className="flex space-x-3"
+              className="flex space-x-2 sm:space-x-3"
               initial={{ x: 50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.5 }}
@@ -237,21 +237,21 @@ export default function Home() {
               <motion.button
                 onClick={speakLastMessage}
                 disabled={isSpeaking}
-                className="p-2 rounded-xl bg-gradient-to-br from-emerald-500/20 to-teal-500/20 hover:from-emerald-500/30 hover:to-teal-500/30 transition-all backdrop-blur-lg border border-emerald-400/30 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+                className="p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-gradient-to-br from-emerald-500/20 to-teal-500/20 hover:from-emerald-500/30 hover:to-teal-500/30 transition-all backdrop-blur-lg border border-emerald-400/30 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
                 title="Repeat last response"
               >
-                <Volume2 className="w-5 h-5 text-emerald-300" />
+                <Volume2 className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-300" />
               </motion.button>
               <motion.button
                 onClick={clearChat}
-                className="p-2 rounded-xl bg-gradient-to-br from-red-500/20 to-pink-500/20 hover:from-red-500/30 hover:to-pink-500/30 transition-all backdrop-blur-lg border border-red-400/30 shadow-lg"
+                className="p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-gradient-to-br from-red-500/20 to-pink-500/20 hover:from-red-500/30 hover:to-pink-500/30 transition-all backdrop-blur-lg border border-red-400/30 shadow-lg"
                 whileHover={{ scale: 1.1, rotate: -5 }}
                 whileTap={{ scale: 0.9 }}
                 title="Clear chat"
               >
-                <Trash2 className="w-5 h-5 text-red-300" />
+                <Trash2 className="w-4 h-4 sm:w-5 sm:h-5 text-red-300" />
               </motion.button>
             </motion.div>
           </div>
@@ -325,9 +325,9 @@ export default function Home() {
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
-          className="p-4 backdrop-blur-2xl bg-gradient-to-r from-white/10 via-white/5 to-white/10 border-t border-white/20 shadow-2xl"
+          className="p-3 sm:p-4 backdrop-blur-2xl bg-gradient-to-r from-white/10 via-white/5 to-white/10 border-t border-white/20 shadow-2xl"
         >
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-2 sm:space-x-3">
             <div className="flex-1">
               <TextInput
                 onSendMessage={handleTextMessage}

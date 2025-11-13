@@ -143,11 +143,11 @@ export default function AudioRecorder({ onTranscriptionComplete, disabled, conte
   };
 
   return (
-    <div className="flex items-center space-x-2">
+    <div className="flex items-center space-x-1.5 sm:space-x-2 flex-shrink-0">
       {isSpeaking && (
         <motion.button
           onClick={stopSpeaking}
-          className="p-2.5 rounded-xl bg-gradient-to-br from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-700 transition-all shadow-lg shadow-red-500/50 ring-2 ring-red-400/50"
+          className="p-2 sm:p-2.5 rounded-lg sm:rounded-xl bg-gradient-to-br from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-700 transition-all shadow-lg shadow-red-500/50 ring-2 ring-red-400/50"
           whileHover={{ scale: 1.1, rotate: -5 }}
           whileTap={{ scale: 0.9 }}
           title="Stop audio"
@@ -155,16 +155,16 @@ export default function AudioRecorder({ onTranscriptionComplete, disabled, conte
           animate={{ scale: 1, rotate: 0 }}
           exit={{ scale: 0, rotate: 90 }}
         >
-          <MicOff className="w-4 h-4 text-white" />
+          <MicOff className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
         </motion.button>
       )}
       
       <motion.button
         onClick={toggleRecording}
         disabled={disabled || isProcessing}
-        className={`relative p-3 rounded-2xl transition-all duration-300 ${
+        className={`relative p-2.5 sm:p-3 rounded-xl sm:rounded-2xl transition-all duration-300 ${
           isRecording
-            ? 'bg-gradient-to-br from-red-500 via-rose-500 to-pink-600 hover:from-red-600 hover:via-rose-600 hover:to-pink-700 shadow-xl shadow-red-500/60 ring-3 ring-red-400/70'
+            ? 'bg-gradient-to-br from-red-500 via-rose-500 to-pink-600 hover:from-red-600 hover:via-rose-600 hover:to-pink-700 shadow-xl shadow-red-500/60 ring-2 sm:ring-3 ring-red-400/70'
             : 'bg-gradient-to-br from-purple-500/50 via-pink-500/50 to-rose-500/50 hover:from-purple-600/60 hover:via-pink-600/60 hover:to-rose-600/60 shadow-md shadow-purple-500/30 ring-2 ring-purple-400/30'
         } ${(disabled || isProcessing) ? 'opacity-50 cursor-not-allowed' : ''}`}
         whileHover={{ scale: isRecording ? 1 : 1.05 }}
@@ -185,19 +185,19 @@ export default function AudioRecorder({ onTranscriptionComplete, disabled, conte
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-            className="w-5 h-5"
+            className="w-4 h-4 sm:w-5 sm:h-5"
           >
-            <div className="w-full h-full border-3 border-white border-t-transparent rounded-full" />
+            <div className="w-full h-full border-2 sm:border-3 border-white border-t-transparent rounded-full" />
           </motion.div>
         ) : isRecording ? (
           <motion.div
             animate={{ scale: [1, 1.2, 1] }}
             transition={{ duration: 0.8, repeat: Infinity }}
           >
-            <MicOff className="w-5 h-5 text-white" />
+            <MicOff className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
           </motion.div>
         ) : (
-          <Mic className="w-5 h-5 text-white" />
+          <Mic className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
         )}
       </motion.button>
     </div>
